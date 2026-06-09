@@ -1,0 +1,61 @@
+# ResearchConductor — Gate Configuration
+#
+# All human-intervention conditions are defined here.
+# These are static, config-driven thresholds — not learned functions.
+# The LLM has no access to or influence over these values at runtime.
+#
+# To adjust a threshold: edit this file. No code changes required.
+# This file is intentionally kept public — its transparency is the point.
+
+study_type_gate:
+  # Fires after study design, before any participant sessions run.
+  # If the classified question type is in this list, a human must
+  # review the study design before the agent proceeds.
+  requires_review:
+    - strategic
+    - legal
+    - cultural
+    - regulatory
+    - cross-functional
+  applies_to:
+    - interview
+    - survey
+    - usability_test
+
+distress_gate:
+  # Fires during or immediately after a participant session.
+  # Counts keyword occurrences across the full session transcript.
+  # If total hits >= max_occurrences, the session is flagged.
+  # halt_immediately: true means the current session stops — not just flagged.
+  keywords:
+    - "give up"
+    - "i give up"
+    - "frustrated"
+    - "so frustrated"
+    - "extremely frustrated"
+    - "confused"
+    - "makes no sense"
+    - "hate this"
+    - "done with this"
+    - "this is impossible"
+    - "can't figure this out"
+    - "why is this so hard"
+  max_occurrences: 2
+  halt_immediately: true
+  applies_to:
+    - interview
+    - survey
+  # Note: usability_test excluded — abandonment is measured structurally,
+  # not via transcript keyword matching.
+
+completion_gate:
+  # Fires after response analysis, before report generation.
+  # Guards against drawing conclusions from insufficient or incomplete data.
+  # Two conditions: minimum completion rate AND minimum participant count.
+  # Both must be satisfied for the gate to pass.
+  minimum_rate: 0.60      # 60% of participants must complete the study task
+  minimum_participants: 3  # absolute floor — rate is meaningless below this
+  applies_to:
+    - interview
+    - survey
+    - usability_test

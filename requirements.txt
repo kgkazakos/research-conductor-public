@@ -1,0 +1,20 @@
+# ResearchConductor — dependencies
+# Python 3.14 on Mac (requires SSL cert fix — run /Applications/Python 3.14/Install Certificates.command)
+
+# Orchestration
+langgraph>=0.2.0
+langchain-core>=0.3.0
+
+# LLM providers (adapter layer — only one used at runtime via LLM_PROVIDER env var)
+google-genai>=1.0.0          # default: Gemini 3.1 Pro
+openai>=1.0.0                # optional: set LLM_PROVIDER=openai
+anthropic>=0.34.0            # optional: set LLM_PROVIDER=anthropic
+
+# Gate evaluator
+pyyaml>=6.0
+
+# Config
+python-dotenv>=1.0.0
+
+# Testing
+pytest>=8.0.0

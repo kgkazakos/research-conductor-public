@@ -1,0 +1,26 @@
+# Environment
+.env
+.env.*
+
+# Private outputs (raw study data — never public)
+outputs/raw/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Mac
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
