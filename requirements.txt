@@ -15,6 +15,7 @@ pyyaml>=6.0
 
 # Config
 python-dotenv>=1.0.0
+certifi>=2024.0.0            # SSL cert fix for Python 3.14 on macOS
 
 # Testing
 pytest>=8.0.0
