@@ -13,7 +13,6 @@ response_analyzer, report_generator) use LLMClient.
 from __future__ import annotations
 
 import os
-import ssl
 from enum import Enum
 from typing import Optional
 
@@ -22,12 +21,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# SSL fix for Python 3.14 on macOS — must run before any HTTPS client init
+# SSL fix for Python 3.14 on macOS — env vars are read by google.genai directly
 os.environ.setdefault("SSL_CERT_FILE", certifi.where())
 os.environ.setdefault("REQUESTS_CA_BUNDLE", certifi.where())
-ssl.create_default_context = lambda *a, **kw: ssl.create_default_context(
-    *a, cafile=certifi.where(), **kw
-)
 
 
 class LLMProvider(str, Enum):

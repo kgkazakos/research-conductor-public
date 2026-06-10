@@ -40,21 +40,23 @@ _evaluator = GateEvaluator()
 # Replace stub bodies with real implementations session by session.
 
 def study_designer(state: StudyState) -> dict:
-    """
-    TODO (Thu Jun 12): call agents/study_designer.py
-    Input:  state["research_question"]
-    Output: method_type, research_question_type, protocol
-    """
-    return {}
+    from agents.study_designer import StudyDesigner
+    from llm.client import LLMClient
+    protocol = StudyDesigner(LLMClient()).design(state["research_question"])
+    return {
+        "method_type": protocol.method_type,
+        "research_question_type": protocol.research_question_type,
+        "protocol": protocol.to_dict(),
+    }
 
 
 def participant_selector(state: StudyState) -> dict:
-    """
-    TODO (Fri Jun 13): call participants/selector.py
-    Input:  state["protocol"]["participant_criteria"]
-    Output: participants (list of matched personas)
-    """
-    return {}
+    from participants.selector import ParticipantSelector
+    participants = ParticipantSelector().select(
+        protocol=state.get("protocol", {}),
+        method_type=state.get("method_type", ""),
+    )
+    return {"participants": participants}
 
 
 def session_conductor(state: StudyState) -> dict:
