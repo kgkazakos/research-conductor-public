@@ -76,21 +76,29 @@ def session_conductor(state: StudyState) -> dict:
 
 
 def response_analyzer(state: StudyState) -> dict:
-    """
-    TODO (Mon Jun 16): call agents/response_analyzer.py
-    Input:  state["sessions"], state["method_type"]
-    Output: analysis
-    """
-    return {}
+    from agents.response_analyzer import ResponseAnalyzer
+    from llm.client import LLMClient
+    analysis = ResponseAnalyzer(LLMClient()).analyze(
+        sessions=state.get("sessions", []),
+        transcripts=state.get("transcripts", []),
+        method_type=state.get("method_type", "interview"),
+        completed_count=state.get("completed_count", 0),
+        total_count=state.get("total_count", 0),
+    )
+    return {"analysis": analysis}
 
 
 def report_generator(state: StudyState) -> dict:
-    """
-    TODO (Tue Jun 17): call agents/report_generator.py
-    Input:  state["analysis"], state["protocol"], state["gate_log"]
-    Output: report
-    """
-    return {}
+    from agents.report_generator import ReportGenerator
+    from llm.client import LLMClient
+    report = ReportGenerator(LLMClient()).generate(
+        analysis=state.get("analysis", {}),
+        protocol=state.get("protocol", {}),
+        gate_log=state.get("gate_log", []),
+        research_question=state.get("research_question", ""),
+        sessions=state.get("sessions", []),
+    )
+    return {"report": report}
 
 
 # ─── Human review stubs ───────────────────────────────────────────────────────
