@@ -60,12 +60,19 @@ def participant_selector(state: StudyState) -> dict:
 
 
 def session_conductor(state: StudyState) -> dict:
-    """
-    TODO (Sat Jun 14): call agents/session_conductor.py → methods/<adapter>
-    Input:  state["protocol"], state["participants"]
-    Output: sessions, transcripts, completed_count, total_count
-    """
-    return {}
+    from agents.session_conductor import SessionConductor
+    from llm.client import LLMClient
+    sessions, transcripts, completed, total = SessionConductor(LLMClient()).run_all_sessions(
+        protocol=state.get("protocol", {}),
+        participants=state.get("participants", []),
+        method_type=state.get("method_type", "interview"),
+    )
+    return {
+        "sessions": sessions,
+        "transcripts": transcripts,
+        "completed_count": completed,
+        "total_count": total,
+    }
 
 
 def response_analyzer(state: StudyState) -> dict:
