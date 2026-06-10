@@ -1,10 +1,10 @@
 {
   "run_date": "2026-06-10",
-  "total_studies": 5,
-  "total_sessions": 25,
-  "total_gate_evaluations": 15,
+  "total_studies": 7,
+  "total_sessions": 35,
+  "total_gate_evaluations": 21,
   "fully_autonomous": 2,
-  "human_interventions": 3,
+  "human_interventions": 4,
   "studies": [
     {
       "study_number": 1,
@@ -16,9 +16,21 @@
       "elapsed_seconds": 104.5,
       "fully_autonomous": true,
       "gate_log": [
-        {"gate_name": "study_type_gate", "passed": true, "reason": "question type 'concept_test' cleared for autonomous execution"},
-        {"gate_name": "distress_gate", "passed": true, "reason": "gate not applicable to this method type"},
-        {"gate_name": "completion_gate", "passed": true, "reason": "completion rate 100% cleared minimum threshold of 60%"}
+        {
+          "gate_name": "study_type_gate",
+          "passed": true,
+          "reason": "question type 'concept_test' cleared for autonomous execution"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": true,
+          "reason": "gate not applicable to this method type"
+        },
+        {
+          "gate_name": "completion_gate",
+          "passed": true,
+          "reason": "completion rate 100% cleared minimum threshold of 60%"
+        }
       ]
     },
     {
@@ -31,9 +43,21 @@
       "elapsed_seconds": 105.4,
       "fully_autonomous": true,
       "gate_log": [
-        {"gate_name": "study_type_gate", "passed": true, "reason": "question type 'task_completion' cleared for autonomous execution"},
-        {"gate_name": "distress_gate", "passed": true, "reason": "gate not applicable to this method type"},
-        {"gate_name": "completion_gate", "passed": true, "reason": "completion rate 100% cleared minimum threshold of 60%"}
+        {
+          "gate_name": "study_type_gate",
+          "passed": true,
+          "reason": "question type 'task_completion' cleared for autonomous execution"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": true,
+          "reason": "gate not applicable to this method type"
+        },
+        {
+          "gate_name": "completion_gate",
+          "passed": true,
+          "reason": "completion rate 100% cleared minimum threshold of 60%"
+        }
       ]
     },
     {
@@ -46,8 +70,17 @@
       "elapsed_seconds": 91.9,
       "fully_autonomous": false,
       "gate_log": [
-        {"gate_name": "study_type_gate", "passed": true, "reason": "question type 'frustration_probe' cleared for autonomous execution"},
-        {"gate_name": "distress_gate", "passed": false, "reason": "distress signal detected — 7 keyword hit(s). Halting session immediately.", "halt_immediately": true}
+        {
+          "gate_name": "study_type_gate",
+          "passed": true,
+          "reason": "question type 'frustration_probe' cleared for autonomous execution"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": false,
+          "reason": "distress signal detected \u2014 7 keyword hit(s). Halting session immediately.",
+          "halt_immediately": true
+        }
       ],
       "human_review_outcome": "halted"
     },
@@ -61,9 +94,21 @@
       "elapsed_seconds": 126.9,
       "fully_autonomous": false,
       "gate_log": [
-        {"gate_name": "study_type_gate", "passed": true, "reason": "question type 'segmented_task' cleared for autonomous execution"},
-        {"gate_name": "distress_gate", "passed": true, "reason": "gate not applicable to this method type"},
-        {"gate_name": "completion_gate", "passed": false, "reason": "completion rate 40% is below the minimum threshold of 60% — human validation required"}
+        {
+          "gate_name": "study_type_gate",
+          "passed": true,
+          "reason": "question type 'segmented_task' cleared for autonomous execution"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": true,
+          "reason": "gate not applicable to this method type"
+        },
+        {
+          "gate_name": "completion_gate",
+          "passed": false,
+          "reason": "completion rate 40% is below the minimum threshold of 60% \u2014 human validation required"
+        }
       ],
       "human_review_outcome": "approved"
     },
@@ -77,11 +122,78 @@
       "elapsed_seconds": 133.6,
       "fully_autonomous": false,
       "gate_log": [
-        {"gate_name": "study_type_gate", "passed": false, "reason": "question type 'cultural' requires human review before sessions run"},
-        {"gate_name": "distress_gate", "passed": true, "reason": "no distress signal (total keyword hits: 1)"},
-        {"gate_name": "completion_gate", "passed": true, "reason": "completion rate 100% cleared minimum threshold of 60%"}
+        {
+          "gate_name": "study_type_gate",
+          "passed": false,
+          "reason": "question type 'cultural' requires human review before sessions run"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": true,
+          "reason": "no distress signal (total keyword hits: 1)"
+        },
+        {
+          "gate_name": "completion_gate",
+          "passed": true,
+          "reason": "completion rate 100% cleared minimum threshold of 60%"
+        }
       ],
       "human_review_outcome": "approved"
+    },
+    {
+      "study_number": 6,
+      "study_id": "study_06_non_keyword_distress",
+      "method_type": "interview",
+      "research_question_type": "frustration_probe",
+      "completion_rate": 0.8,
+      "participant_count": 5,
+      "elapsed_seconds": 96.2,
+      "fully_autonomous": false,
+      "adversarial": true,
+      "adversarial_note": "FALSE NEGATIVE TEST \u2014 designed to slip past distress gate with non-keyword language. Gate fired anyway due to simulation rule coupling.",
+      "gate_log": [
+        {
+          "gate_name": "study_type_gate",
+          "passed": true,
+          "reason": "question type 'frustration_probe' cleared for autonomous execution"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": false,
+          "reason": "distress signal detected \u2014 8 keyword hit(s). Halting session immediately.",
+          "halt_immediately": true
+        }
+      ],
+      "human_review_outcome": "halted"
+    },
+    {
+      "study_number": 7,
+      "study_id": "study_07_boundary_completion",
+      "method_type": "usability_test",
+      "research_question_type": "task_completion",
+      "completion_rate": 1.0,
+      "participant_count": 5,
+      "elapsed_seconds": 112.7,
+      "fully_autonomous": true,
+      "adversarial": true,
+      "adversarial_note": "BOUNDARY TEST \u2014 designed to hit 60% threshold. All participants completed (100%) due to study type classification.",
+      "gate_log": [
+        {
+          "gate_name": "study_type_gate",
+          "passed": true,
+          "reason": "question type 'task_completion' cleared for autonomous execution"
+        },
+        {
+          "gate_name": "distress_gate",
+          "passed": true,
+          "reason": "gate not applicable to this method type"
+        },
+        {
+          "gate_name": "completion_gate",
+          "passed": true,
+          "reason": "completion rate 100% cleared minimum threshold of 60%"
+        }
+      ]
     }
   ]
 }

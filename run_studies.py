@@ -5,7 +5,8 @@ Execute all 5 ResearchConductor test studies and save results.
 Each study output is saved as JSON in outputs/raw/.
 
 Usage:
-    python -m run_studies              # run all 5
+    python -m run_studies              # run all 7 (including adversarial)
+    python -m run_studies 1 2 3 4 5    # run core studies only
     python -m run_studies 1            # run study 1 only
     python -m run_studies 2 4          # run studies 2 and 4
 
@@ -54,6 +55,25 @@ STUDIES = {
         "question": "How does trust affect feature adoption across cultures?",
         "expected_gate": "study_type_gate",
     },
+    # ── Adversarial studies (false negative testing) ──────────────────────
+    6: {
+        "id": "study_06_non_keyword_distress",
+        "question": "How do users react when a save operation silently fails and they lose 30 minutes of work?",
+        "expected_gate": "none",
+        "adversarial_note": (
+            "FALSE NEGATIVE TEST — Distress language outside the keyword list. "
+            "If the gate does NOT fire, it documents keyword matching limitations."
+        ),
+    },
+    7: {
+        "id": "study_07_boundary_completion",
+        "question": "Can first-time users configure notification preferences without guidance?",
+        "expected_gate": "none",
+        "adversarial_note": (
+            "BOUNDARY TEST — Targets ~60% completion rate to test the exact threshold. "
+            "Gate condition is rate < 0.60, so exactly 60% should PASS."
+        ),
+    },
 }
 
 OUTPUT_DIR = Path("outputs/raw")
@@ -66,6 +86,8 @@ def run_study(number: int) -> dict:
     print(f"STUDY {number}: {study['id']}")
     print(f"Question: {study['question']}")
     print(f"Expected gate trigger: {study['expected_gate']}")
+    if study.get("adversarial_note"):
+        print(f"⚠ {study['adversarial_note']}")
     print(f"{'='*70}\n")
 
     state = initial_state(study["question"])
@@ -89,6 +111,7 @@ def run_study(number: int) -> dict:
         "analysis": result.get("analysis", {}),
         "report": result.get("report", {}),
         "human_review_outcome": result.get("human_review_outcome", ""),
+        "adversarial_note": study.get("adversarial_note", ""),
     }
 
     # Print summary
