@@ -6,7 +6,7 @@
 AI agent that conducts user research studies autonomously, with static rule-based gates defining where human oversight is required.
 
 ## Status
-🔨 In development — Jun 9–21 2026
+🔨 Built — Jun 14 2026
 
 ## Method types
 - Interview (scripted conversational sessions)
