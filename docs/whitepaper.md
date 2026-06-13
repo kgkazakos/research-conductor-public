@@ -1,7 +1,7 @@
 # ResearchConductor: Static Gates for Autonomous Research Agent Oversight
 
 **Kostas Kazakos, PhD**
-*Computational Product Research Portfolio — Project 4*
+*Computational Product Research Main Phase I — Project 4*
 *Personal project, independent of employer*
 
 June 2026
@@ -196,8 +196,8 @@ A blinded human evaluation is planned for Q4 2026. Five UX researchers will inde
 | Studies | 7 (5 core + 2 adversarial) |
 | Participants | 5 synthetic personas per study |
 
-**Repository:** github.com/kgkazakos/research-conductor
+**Repository:** github.com/kgkazakos/research-conductor-public
 
 ---
 
-*This project is part of the Computational Product Research portfolio. Core thesis: "Engineering scales Empathy — I build the infrastructure that makes AI models aligned with Human Intent."*
+*This project is part of the Computational Product Research portfolio. Core thesis: "CPR is the bridge from static insight to agentic intelligence. We are moving from studying users to building systems that co-evolve with them."*
